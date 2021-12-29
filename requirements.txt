@@ -24,6 +24,7 @@ constantly==15.1.0
 cryptography==36.0.0
 cytoolz==0.11.2
 daphne==3.0.2
+Deprecated==1.2.13
 Django==3.2.10
 django-countries==7.2.1
 django-environ==0.8.1
@@ -52,6 +53,7 @@ msgpack==1.0.3
 multiaddr==0.0.9
 multidict==5.2.0
 netaddr==0.8.0
+packaging==21.3
 parsimonious==0.8.1
 phonenumbers==8.12.39
 prompt-toolkit==3.0.24
@@ -63,8 +65,10 @@ pycparser==2.21
 pycryptodome==3.12.0
 PyJWT==1.7.1
 pyOpenSSL==21.0.0
+pyparsing==3.0.6
 pyrsistent==0.18.0
 pytz==2021.3
+redis==4.1.0
 requests==2.26.0
 rlp==2.0.1
 service-identity==21.1.0
@@ -80,5 +84,6 @@ vine==5.0.0
 wcwidth==0.2.5
 web3==5.25.0
 websockets==9.1
+wrapt==1.13.3
 yarl==1.7.2
 zope.interface==5.4.0

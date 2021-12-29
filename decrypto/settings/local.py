@@ -136,21 +136,20 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CELERY_BROKER_URL = "redis://:p1555c88674b667ce3bb0ebc3c61f497754eb929a819c92d614c9b84dbabd6dd8@ec2-3-226-27-183.compute-1.amazonaws.com:17809"
-BROKER_URL = "redis://:p1555c88674b667ce3bb0ebc3c61f497754eb929a819c92d614c9b84dbabd6dd8@ec2-3-226-27-183.compute-1.amazonaws.com:17809"
+CELERY_BROKER_URL = os.getenv("REDIS_URL")
+BROKER_URL = os.getenv("REDIS_URL")
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
-CELERY_RESULT_PASSWORD = "p1555c88674b667ce3bb0ebc3c61f497754eb929a819c92d614c9b84dbabd6dd8"
+CELERY_RESULT_PASSWORD = os.getenv("CELERY_RESULT_PASSWORD")
 
 CHANNEL_LAYERS = {
     # queue of messages
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': ["redis://:p1555c88674b667ce3bb0ebc3c61f497754eb929a819c92d614c9b84dbabd6dd8@ec2-3-226-27-183"
-                      ".compute-1.amazonaws.com:17809"],
+            'hosts': [os.getenv("REDIS_URL")],
             'symmetric_encryption_keys': [SECRET_KEY],
         },
     },
