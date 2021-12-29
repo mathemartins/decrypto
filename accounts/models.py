@@ -77,7 +77,6 @@ class EmailActivation(models.Model):
                 'path': path,
                 'email': self.email
             }
-            txt_ = get_template("registration/emails/verify.txt").render(context)
             html_ = get_template("registration/emails/verify.html").render(context)
             subject = 'Decrypto Account Activation'
             from_email = settings.EMAIL_HOST_USER
@@ -87,8 +86,8 @@ class EmailActivation(models.Model):
             message = EmailMessage(
                 subject, html_, from_email, recipient_list
             )
-            message.fail_silently = False
-            message.send()
+            message.fail_silently = True
+            # message.send()
         return False
 
 

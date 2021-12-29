@@ -25,15 +25,13 @@ class AuthAPIView(APIView):
             return Response({'detail': 'You are already authenticated'}, status=400)
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-        print(serializer, serializer.data)
 
-        return jwt_response_payload_handler(
+        response = jwt_response_payload_handler(
             token=serializer.data['token'],
-            user=serializer.data['user'],
-            message='User logged in  successfully',
-            status=True,
+            user=serializer.data['username'],
             request=request
         )
+        return Response(response, status=status.HTTP_200_OK)
 
 
 class RegisterAPIView(generics.CreateAPIView):

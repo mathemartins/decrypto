@@ -28,8 +28,6 @@ urlpatterns = [
 urlpatterns += [
     path('accounts/', RedirectView.as_view(url='/account')),
     path('account/', include(('accounts.urls', 'account-url'), namespace='account-url')),
-    path('accounts/', include(("accounts.passwords.urls", 'accounts-password-url'), namespace='account-password')),
-    path('accounts-reset-done/', include("accounts.passwords.urls")),
 ]
 
 if settings.DEBUG:

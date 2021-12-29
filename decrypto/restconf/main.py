@@ -9,7 +9,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ),
-    'DEFAULT_PAGINATION_CLASS': 'unifaires_auth.restconf.pagination.UnifairesAPIPagination',
+    'DEFAULT_PAGINATION_CLASS': 'decrypto.restconf.pagination.DecryptoAPIPagination',
     'DEFAULT_FILTER_BACKENDS': (
         'rest_framework.filters.SearchFilter',
         'rest_framework.filters.OrderingFilter',
@@ -36,7 +36,7 @@ JWT_AUTH = {
         'accounts.api.utils.jwt_response_payload_handler',
 
     'JWT_ALLOW_REFRESH': True,
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=30),
 
     'JWT_AUTH_HEADER_PREFIX': 'JWT',  # Authorization: JWT <token>
     'JWT_AUTH_COOKIE': None,

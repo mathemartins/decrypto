@@ -2,7 +2,7 @@ import datetime
 from abc import ABC
 
 import phonenumbers
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.models import update_last_login
 from django.utils import timezone
 from django_countries.fields import Country
@@ -13,7 +13,6 @@ from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 from rest_framework.reverse import reverse as api_reverse
 
-from accounts.backend import EmailBackend
 from accounts.models import Profile
 
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
@@ -32,7 +31,7 @@ class UserLoginSerializer(serializers.Serializer):
     def validate(self, data):
         username = data.get("username", )
         password = data.get("password", )
-        user = EmailBackend.authenticate(username=username, password=password)
+        user = authenticate(username=username, password=password)
         if user is None:
             raise serializers.ValidationError('User with username and password does not exists.')
         try:
@@ -42,7 +41,7 @@ class UserLoginSerializer(serializers.Serializer):
         except User.DoesNotExist:
             raise serializers.ValidationError('User with given email and password does not exists')
         return {
-            'user': user,
+            'username': user.username,
             'token': jwt_token
         }
 
